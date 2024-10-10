@@ -1,5 +1,5 @@
-import ExplainThisCode from './ExplainThisCode';
+import ExplainThisCodeClient from './ExplainThisCodeClient';
 
-exports.ExplainThisCode = ExplainThisCode;
+export { ExplainThisCodeClient };
 
 

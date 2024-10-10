@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "explainthiscode-client": {
+      "signature": "ae219949f30d172a0b602d7fc23cd486",
+      "file": true
+    }
+  }
+}
