@@ -1,5 +1,4 @@
-import ExplainThisCodeClient from './ExplainThisCodeClient';
+import { ExplainThisCodeClient } from "./services/api-service";
+import { ExplainThisCodeUI } from "./components/explainthiscode-ui";
 
-export { ExplainThisCodeClient };
-
-
+export { ExplainThisCodeClient, ExplainThisCodeUI };

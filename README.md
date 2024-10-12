@@ -1,70 +1,182 @@
-# Getting Started with Create React App
+# ExplainThisCode Module
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ExplainThisCode is a React-based module that provides an easy-to-use UI component and API client for interacting with the ExplainThisCode API.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+```bash
+npm install explainthiscode
+```
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ExplainThisCodeUI Component
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The `ExplainThisCodeUI` component is a ready-to-use React component that displays the result of a health check API call.
 
-### `npm test`
+```jsx
+import React from "react";
+import { ExplainThisCodeUI } from "explainthiscode";
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const App = () => {
+  return (
+    <div>
+      <h1>ExplainThisCode Health Check</h1>
+      <ExplainThisCodeUI processId="your-process-id" />
+    </div>
+  );
+};
 
-### `npm run build`
+export default App;
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ExplainThisCodeClient
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you need more control over API calls, you can use the `ExplainThisCodeClient` directly:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
+import { ExplainThisCodeClient } from "explainthiscode";
 
-### `npm run eject`
+const client = new ExplainThisCodeClient({
+  baseUrl: "http://your-api-base-url",
+  timeout: 10000, // optional, defaults to 5000ms
+});
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+client
+  .get("/some-endpoint", { param1: "value1" })
+  .then((response) => console.log(response))
+  .catch((error) => console.error(error));
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### useApiData Hook
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+For custom React components, you can use the `useApiData` hook:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```jsx
+import React from "react";
+import { useApiData } from "explainthiscode";
 
-## Learn More
+const CustomComponent = ({ processId }) => {
+  const { data, loading, error } = useApiData(
+    "/custom-endpoint",
+    processId,
+    "get",
+    { customParam: "value" }
+  );
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  return <div>Data: {JSON.stringify(data)}</div>;
+};
 
-### Code Splitting
+export default CustomComponent;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Configuration
 
-### Analyzing the Bundle Size
+The module uses a base URL for API calls. By default, it's set to `http://localhost:4000/v1`. You can change this by modifying the `API_BASE_URL` in `src/config.js`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## API Reference
 
-### Making a Progressive Web App
+### ExplainThisCodeClient
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `constructor(config)`: Creates a new client instance
 
-### Advanced Configuration
+  - `config.baseUrl`: Base URL for API calls
+  - `config.timeout`: Timeout for requests in milliseconds
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `get(path, params)`: Performs a GET request
+- `post(path, data)`: Performs a POST request
+- `put(path, data)`: Performs a PUT request
+- `delete(path, data)`: Performs a DELETE request
 
-### Deployment
+### useApiData Hook
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+`useApiData(endpoint, processId, method, params)`
 
-### `npm run build` fails to minify
+- `endpoint`: API endpoint to call
+- `processId`: Process ID for the API call
+- `method`: HTTP method (default: 'get')
+- `params`: Additional parameters for the API call
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Returns an object with `{ data, loading, error }`.
+
+## Module Structure
+
+```
+explainthiscode/
+├── src/
+│   ├── components/
+│   │   └── explainthiscode-ui.jsx
+│   ├── hooks/
+│   │   └── use-api-data.js
+│   ├── services/
+│   │   └── api-service.js
+│   ├── utils/
+│   │   └── constants.js
+│   ├── config.js
+│   └── index.js
+└── README.md
+```
+
+## Key Files
+
+- `src/services/api-service.js`: Contains the `ExplainThisCodeClient` class for making API requests.
+- `src/hooks/use-api-data.js`: Provides the `useApiData` hook for fetching data in React components.
+- `src/components/explainthiscode-ui.jsx`: Implements the `ExplainThisCodeUI` React component.
+- `src/config.js`: Defines configuration constants like `API_BASE_URL`.
+- `src/utils/constants.js`: Defines additional constants used throughout the module.
+- `src/index.js`: Main entry point, exporting the public API of the module.
+
+## How to Use This Module in Your Project
+
+1. Install the module in your project:
+
+   ```bash
+   npm install explainthiscode
+   ```
+
+2. Import the necessary components or functions in your React component:
+
+   ```jsx
+   import {
+     ExplainThisCodeUI,
+     ExplainThisCodeClient,
+     useApiData,
+   } from "explainthiscode";
+   ```
+
+3. Use the `ExplainThisCodeUI` component in your JSX:
+
+   ```jsx
+   <ExplainThisCodeUI processId="your-process-id" />
+   ```
+
+4. If you need to make custom API calls, use the `ExplainThisCodeClient`:
+
+   ```javascript
+   const client = new ExplainThisCodeClient({ baseUrl: "your-api-base-url" });
+   client
+     .get("/your-endpoint", { param: "value" })
+     .then((response) => console.log(response))
+     .catch((error) => console.error(error));
+   ```
+
+5. For custom data fetching in functional components, use the `useApiData` hook:
+   ```jsx
+   const { data, loading, error } = useApiData(
+     "/your-endpoint",
+     "your-process-id"
+   );
+   ```
+
+Remember to replace 'your-process-id', 'your-api-base-url', and '/your-endpoint' with your actual values.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License.

@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no tyest specified\" && exit 1",
-    "build": "npm run build:cjs && npm run build:esm",
+    "build": "babel src --out-dir dist",
     "build:cjs": "babel src --out-dir dist --copy-files",
     "build:esm": "babel src --out-dir dist/esm --copy-files --no-babelrc --config-file ./.babelrc.esm.json"
   },
@@ -31,7 +31,6 @@
   },
   "homepage": "https://github.com/aenamnairda/explainthiscode-client#readme",
   "dependencies": {
-    "explainthiscode-client": "file:.yalc/explainthiscode-client",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
