@@ -1,4 +1,5 @@
-import { API_BASE_URL, API_VERSION } from "../config";
+const API_BASE_URL = "http://localhost:4000";
+const API_VERSION = "v1";
 
 class ExplainThisCodeClient {
   constructor(config) {
@@ -65,7 +66,8 @@ const apiClient = new ExplainThisCodeClient({
 
 export { apiClient, ExplainThisCodeClient };
 
-// Export individual methods for convenience
 export const getProcess = (processId, params = {}) =>
   apiClient.get(`/processes/${processId}`, params);
-// Add other API methods as needed
+
+export const getCodeSnippets = (processId, stepId, params = {}) =>
+  apiClient.get(`/code_snippets/${processId}/${stepId}`, params);

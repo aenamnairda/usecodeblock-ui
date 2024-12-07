@@ -4,13 +4,14 @@
   "description": "ExplainThisCode is a set of client side views for ExplainThisCode.com",
   "private": false,
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/esm/index.js",
   "files": [
-    "dist"
+    "dist",
+    "dist/esm"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js",
+      "import": "./dist/esm/index.js",
       "require": "./dist/index.js"
     }
   },
@@ -18,7 +19,9 @@
     "test": "echo \"Error: no tyest specified\" && exit 1",
     "build": "babel src --out-dir dist",
     "build:cjs": "babel src --out-dir dist --copy-files",
-    "build:esm": "babel src --out-dir dist/esm --copy-files --no-babelrc --config-file ./.babelrc.esm.json"
+    "build:esm": "babel src --out-dir dist/esm --copy-files --no-babelrc --config-file ./.babelrc.esm.json",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix"
   },
   "repository": {
     "type": "git",
@@ -31,14 +34,22 @@
   },
   "homepage": "https://github.com/aenamnairda/explainthiscode-client#readme",
   "dependencies": {
+    "@radix-ui/react-collapsible": "^1.1.1",
+    "@radix-ui/themes": "^3.1.6",
+    "prism-react-renderer": "^2.4.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "@fontsource/inter": "5.0.16",
+    "@fontsource/roboto-mono": "5.0.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.7",
     "@babel/core": "^7.25.8",
     "@babel/preset-env": "^7.25.8",
     "@babel/preset-react": "^7.25.7",
-    "copyfiles": "^2.4.1"
+    "copyfiles": "^2.4.1",
+    "eslint": "^9.16.0",
+    "eslint-plugin-react": "^7.37.2"
   }
 }

@@ -1,0 +1,33 @@
+import React from 'react';
+import * as Collapsible from '@radix-ui/react-collapsible';
+import { Flex } from '@radix-ui/themes';
+
+import styles from './styles.module.css';
+
+const CollapsibleSteps = ({ steps, onStepChange, selectedStepId }) => {
+  return (
+    <Flex direction="column" gap="2">
+      {steps.map((step) => (
+        <Collapsible.Root
+          key={step.id}
+          className={styles.Root}
+          open={selectedStepId === step.id}
+          onOpenChange={() => onStepChange(step.id)}
+        >
+          <div className={styles.StepContent}>
+            <Collapsible.Trigger asChild>
+              <div className={styles.Title}>{step.title}</div>
+            </Collapsible.Trigger>
+            <Collapsible.Content className={styles.CollapsibleContent}>
+              <div className={styles.DescriptionContainer}>
+                <span className={styles.Description}>{step.description}</span>
+              </div>
+            </Collapsible.Content>
+          </div>
+        </Collapsible.Root>
+      ))}
+    </Flex>
+  );
+};
+
+export default CollapsibleSteps;
