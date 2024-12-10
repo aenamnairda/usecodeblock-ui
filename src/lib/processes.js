@@ -2,8 +2,10 @@ class ProcessesClient {
   async getAll() {
     try {
       const response = await fetch(`http://localhost:4000/v1/processes`, {
-        method: 'GET',
-        headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+        },
       });
       if (!response.ok) {
         const error = await response.json();
@@ -19,8 +21,10 @@ class ProcessesClient {
   async create(values) {
     try {
       const response = await fetch(`http://localhost:4000/v1/processes`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+        },
         body: JSON.stringify({
           title: values.title,
           description: values.description,
@@ -39,8 +43,10 @@ class ProcessesClient {
   async getById(id) {
     try {
       const response = await fetch(`http://localhost:4000/v1/processes/${id}`, {
-        method: 'GET',
-        headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+        },
       });
       if (!response.ok) {
         const error = await response.json();
@@ -56,8 +62,10 @@ class ProcessesClient {
   async delete(id) {
     try {
       const response = await fetch(`http://localhost:4000/v1/processes/${id}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+        },
       });
 
       if (!response.ok) {

@@ -1,24 +1,21 @@
 import React from "react";
-import { Box, Skeleton } from "@radix-ui/themes";
-
-import { WidgetAppBar } from "./app-bar";
+import { Text, Skeleton, Flex } from "@radix-ui/themes";
 
 export const SnippetLoadingSkeleton = () => {
   return (
-    <Box>
-      <WidgetAppBar />
-      <Box>
-        <Skeleton width="300px" height="400px" />
-        <Box>
-          <Box>
-            <Skeleton width="100px" height="1em" />
-            <Skeleton width="100px" height="1em" />
-          </Box>
-          <Box>
-            <Skeleton width="250px" height="1em" />
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+    <Flex direction="column" gap="4">
+      <Flex direction="column" gap="2">
+        <Text>
+          <Skeleton>Lorem ipsum dolor sit amet.</Skeleton>
+        </Text>
+
+        <Skeleton>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt
+          </Text>
+        </Skeleton>
+      </Flex>
+    </Flex>
   );
 };

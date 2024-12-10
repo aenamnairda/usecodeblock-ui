@@ -13,3 +13,16 @@
   border: 1px solid hsla(0, 0%, 100%, 0.1);
   overflow: hidden;
 }
+
+.radix-themes .rt-Skeleton.rt-Skeleton.rt-Skeleton {
+  animation: custom-skeleton-pulse 1000ms infinite alternate-reverse !important;
+}
+
+@keyframes custom-skeleton-pulse {
+  0% {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}

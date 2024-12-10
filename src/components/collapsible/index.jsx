@@ -1,8 +1,7 @@
-import React from 'react';
-import * as Collapsible from '@radix-ui/react-collapsible';
-import { Flex } from '@radix-ui/themes';
+import { Flex } from "@radix-ui/themes";
+import * as Collapsible from "@radix-ui/react-collapsible";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 const CollapsibleSteps = ({ steps, onStepChange, selectedStepId }) => {
   return (

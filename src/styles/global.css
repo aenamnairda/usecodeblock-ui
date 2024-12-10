@@ -18,6 +18,15 @@ body {
   --gray-11: #18181b;
   --gray-12: #0e0e10;
 
+  @keyframes rt-skeleton-pulse {
+    0% {
+      background-color: red;
+    }
+    100% {
+      background-color: yellow;
+    }
+  }
+
   /* --color-background: unset;
   --widget-bg-color: var(--gray-12);
   --widget-code-border: var(--gray-9);

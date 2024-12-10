@@ -1,18 +1,38 @@
-module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+import eslint from "@eslint/js";
+import reactPlugin from "eslint-plugin-react";
+
+export default [
+  eslint.configs.recommended,
+  {
+    files: ["**/*.{js,jsx}"],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+      globals: {
+        window: "readonly",
+        document: "readonly",
+        React: "readonly",
+        fetch: "readonly",
+        URL: "readonly",
+      },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
-    ecmaVersion: 12,
-    sourceType: "module",
+    plugins: {
+      react: reactPlugin,
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+    rules: {
+      ...reactPlugin.configs.recommended.rules,
+      "react/react-in-jsx-scope": "error",
+      "react/prop-types": "off",
+    },
   },
-  plugins: ["react"],
-  rules: {
-    // Add custom rules here
-  },
-};
+];

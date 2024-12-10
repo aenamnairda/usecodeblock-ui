@@ -7,8 +7,8 @@ import React, {
 } from "react";
 import { useProcessData } from "../hooks/use-api-data";
 import { useCodeSnippetsData } from "../hooks/use-api-data";
-import { WidgetSkeleton } from "./widget-skeleton";
 import { ProcessWidget } from "./process";
+import { WidgetSkeleton } from "./loading-skeleton";
 import "@radix-ui/themes/styles.css";
 import "../styles/global.css";
 
@@ -64,7 +64,7 @@ export const ExplainThisCodeUI = ({ processId }) => {
       <Theme accentColor="gray" grayColor="sand" radius="large">
         <main>
           {processLoading ? (
-            <WidgetLoadingSkeleton />
+            <WidgetSkeleton />
           ) : (
             <ProcessWidget
               process={process}

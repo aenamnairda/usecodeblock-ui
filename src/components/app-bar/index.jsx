@@ -1,7 +1,5 @@
-import React from 'react';
-import { Flex } from '@radix-ui/themes';
-
-import './styles.css';
+import { Flex } from "@radix-ui/themes";
+import "./styles.css";
 
 export const WidgetAppBar = () => {
   return (

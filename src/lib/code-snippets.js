@@ -20,10 +20,15 @@ class CodeSnippetsClient {
     // Create the promise for this request
     const requestPromise = (async () => {
       try {
-        const response = await fetch(`http://localhost:4000/v1/code_snippets/${processId}/${stepId}`, {
-          method: 'GET',
-          headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
-        });
+        const response = await fetch(
+          `http://localhost:4000/v1/code_snippets/${processId}/${stepId}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           const error = await response.json();
@@ -58,26 +63,34 @@ class CodeSnippetsClient {
   }
 
   async create(processId, stepId, values) {
-    return fetch(`http://localhost:4000/v1/code_snippets/${processId}/${stepId}`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('auth-token')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        code: values.code,
-        file_name: values.fileName,
-        language_id: values.languageId,
-      }),
-    });
+    return fetch(
+      `http://localhost:4000/v1/code_snippets/${processId}/${stepId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code: values.code,
+          file_name: values.fileName,
+          language_id: values.languageId,
+        }),
+      }
+    );
   }
 
   async delete(processId, stepId, codeSnippetId) {
     try {
-      const response = await fetch(`http://localhost:4000/v1/code_snippets/${processId}/${stepId}/${codeSnippetId}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
-      });
+      const response = await fetch(
+        `http://localhost:4000/v1/code_snippets/${processId}/${stepId}/${codeSnippetId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const error = await response.json();
