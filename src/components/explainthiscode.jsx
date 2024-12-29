@@ -60,23 +60,19 @@ export const ExplainThisCodeUI = ({ processId }) => {
   }
 
   return (
-    <React.Fragment>
-      <Theme accentColor="gray" grayColor="sand" radius="large">
-        <main>
-          {processLoading ? (
-            <WidgetSkeleton />
-          ) : (
-            <ProcessWidget
-              process={process}
-              codeSnippets={currentSnippets}
-              onStepChange={handleStepChange}
-              codeSnippetsLoading={isLoading}
-              codeSnippetsError={snippetsError}
-              selectedStepId={stepId}
-            />
-          )}
-        </main>
-      </Theme>
-    </React.Fragment>
+    <Theme accentColor="gray" grayColor="sand" radius="large">
+      {processLoading ? (
+        <WidgetSkeleton />
+      ) : (
+        <ProcessWidget
+          process={process}
+          codeSnippets={currentSnippets}
+          onStepChange={handleStepChange}
+          codeSnippetsLoading={isLoading}
+          codeSnippetsError={snippetsError}
+          selectedStepId={stepId}
+        />
+      )}
+    </Theme>
   );
 };

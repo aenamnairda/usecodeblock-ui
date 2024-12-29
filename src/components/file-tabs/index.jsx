@@ -23,17 +23,19 @@ const FileTabs = ({ snippets, selectedStepId }) => {
       onValueChange={handleTabChange}
     >
       <Tabs.List className={styles.List}>
-        {snippets.map((snippet, index) => (
-          <Tabs.Trigger
-            className={styles.Trigger}
-            key={snippet.id}
-            value={index}
-          >
-            <Text style={{ color: "white", cursor: "pointer" }}>
-              {snippet.file_name + "." + snippet.language_extension}
-            </Text>
-          </Tabs.Trigger>
-        ))}
+        {snippets.map((snippet, index) =>
+          snippet.file_name ? (
+            <Tabs.Trigger
+              className={styles.Trigger}
+              key={snippet.id}
+              value={index}
+            >
+              <Text style={{ color: "white", cursor: "pointer" }}>
+                {snippet.file_name + "." + snippet.language_extension}
+              </Text>
+            </Tabs.Trigger>
+          ) : null
+        )}
       </Tabs.List>
       {snippets.map((snippet, index) => (
         <Tabs.Content className={styles.Content} key={snippet.id} value={index}>
