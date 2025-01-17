@@ -1,0 +1,28 @@
+.WidgetWrapper {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-11);
+  border-radius: 12px;
+}
+
+.FileTabsWrapper {
+  width: 100%;
+  border-radius: 12px;
+  background-color: var(--gray-9);
+  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  overflow: hidden;
+}
+
+.radix-themes .rt-Skeleton.rt-Skeleton.rt-Skeleton {
+  animation: custom-skeleton-pulse 1000ms infinite alternate-reverse !important;
+}
+
+@keyframes custom-skeleton-pulse {
+  0% {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
