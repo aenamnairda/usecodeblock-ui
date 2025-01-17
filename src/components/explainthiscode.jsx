@@ -76,3 +76,5 @@ export const ExplainThisCodeUI = ({ processId }) => {
     </Theme>
   );
 };
+
+export default ExplainThisCodeUI;
