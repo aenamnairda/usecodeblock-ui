@@ -3,12 +3,8 @@
     "@babel/preset-env",
     ["@babel/preset-react", {
       "runtime": "automatic",
-      "importSource": "@emotion/react"
-    }]
-  ],
-  "plugins": [
-    ["@babel/plugin-transform-react-jsx", {
-      "runtime": "automatic"
+      "development": false,
+      "importSource": "react"
     }]
   ]
 }
