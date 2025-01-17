@@ -12,6 +12,7 @@ var _loadingSkeleton = require("./loading-skeleton");
 require("@radix-ui/themes/styles.css");
 require("../styles/global.css");
 var _themes = require("@radix-ui/themes");
+var _jsxRuntime = require("react/jsx-runtime");
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -59,21 +60,24 @@ var ExplainThisCodeUI = exports.ExplainThisCodeUI = function ExplainThisCodeUI(_
     currentSnippets = _useMemo.snippets,
     isLoading = _useMemo.isLoading;
   if (!process) {
-    return /*#__PURE__*/_react["default"].createElement(_loadingSkeleton.WidgetSkeleton, null);
+    return /*#__PURE__*/(0, _jsxRuntime.jsx)(_loadingSkeleton.WidgetSkeleton, {});
   }
   if (processError) {
-    return /*#__PURE__*/_react["default"].createElement("div", null, "Error: ", processError === null || processError === void 0 ? void 0 : processError.message);
+    return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+      children: ["Error: ", processError === null || processError === void 0 ? void 0 : processError.message]
+    });
   }
-  return /*#__PURE__*/_react["default"].createElement(_themes.Theme, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_themes.Theme, {
     accentColor: "gray",
     grayColor: "sand",
-    radius: "large"
-  }, processLoading ? /*#__PURE__*/_react["default"].createElement(_loadingSkeleton.WidgetSkeleton, null) : /*#__PURE__*/_react["default"].createElement(_process.ProcessWidget, {
-    process: process,
-    codeSnippets: currentSnippets,
-    onStepChange: handleStepChange,
-    codeSnippetsLoading: isLoading,
-    codeSnippetsError: snippetsError,
-    selectedStepId: stepId
-  }));
+    radius: "large",
+    children: processLoading ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_loadingSkeleton.WidgetSkeleton, {}) : /*#__PURE__*/(0, _jsxRuntime.jsx)(_process.ProcessWidget, {
+      process: process,
+      codeSnippets: currentSnippets,
+      onStepChange: handleStepChange,
+      codeSnippetsLoading: isLoading,
+      codeSnippetsError: snippetsError,
+      selectedStepId: stepId
+    })
+  });
 };
