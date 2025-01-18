@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Highlight, themes } from "prism-react-renderer";
+import * as React from 'react';
+import { Highlight, themes } from 'prism-react-renderer';
 
 export function CodeSnippets({ code, language }) {
   return (
@@ -9,28 +9,24 @@ export function CodeSnippets({ code, language }) {
           className={className}
           style={{
             ...style,
-            backgroundColor: "transparent",
-            padding: "0.5rem 0",
-            width: "100%",
-            height: "100%",
+            backgroundColor: 'transparent',
+            padding: '0.5rem 0',
+            width: '100%',
+            height: '100%',
             margin: 0,
-            overflow: "auto",
-            fontSize: "0.75rem",
+            overflow: 'auto',
+            fontSize: '0.75rem',
           }}
         >
           {tokens.map((line, i) => (
-            <div
-              key={i}
-              {...getLineProps({ line })}
-              style={{ display: "flex" }}
-            >
+            <div key={i} {...getLineProps({ line })} style={{ display: 'flex' }}>
               <span
                 style={{
-                  userSelect: "none",
-                  width: "2em",
-                  color: "#666",
-                  textAlign: "right",
-                  marginRight: "1em",
+                  userSelect: 'none',
+                  width: '2em',
+                  color: '#666',
+                  textAlign: 'right',
+                  marginRight: '1em',
                 }}
               >
                 {i + 1}

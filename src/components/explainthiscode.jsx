@@ -1,33 +1,20 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { useProcessData } from "../hooks/use-api-data";
-import { useCodeSnippetsData } from "../hooks/use-api-data";
-import { ProcessWidget } from "./process";
-import { WidgetSkeleton } from "./loading-skeleton";
-import "@radix-ui/themes/styles.css";
-import "../styles/global.css";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useProcessData } from '../hooks/use-api-data';
+import { useCodeSnippetsData } from '../hooks/use-api-data';
+import { ProcessWidget } from './process';
+import { WidgetSkeleton } from './loading-skeleton';
+import '@radix-ui/themes/styles.css';
 
-import { Theme } from "@radix-ui/themes";
+import '../styles/global.css';
+
+import { Theme } from '@radix-ui/themes';
 
 export const ExplainThisCodeUI = ({ processId }) => {
   const [stepId, setStepId] = useState(null);
   const initialLoadDone = useRef(false);
 
-  const {
-    data: processData,
-    loading: processLoading,
-    error: processError,
-  } = useProcessData(processId);
-  const {
-    data: snippetsData,
-    loading: snippetsLoading,
-    error: snippetsError,
-  } = useCodeSnippetsData(processId, stepId);
+  const { data: processData, loading: processLoading, error: processError } = useProcessData(processId);
+  const { data: snippetsData, loading: snippetsLoading, error: snippetsError } = useCodeSnippetsData(processId, stepId);
 
   const process = processData?.process;
 

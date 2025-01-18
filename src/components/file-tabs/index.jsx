@@ -1,9 +1,9 @@
-import * as React from "react";
-import { useState } from "react";
-import { Tabs, Text } from "@radix-ui/themes";
+import * as React from 'react';
+import { useState } from 'react';
+import { Tabs, Text } from '@radix-ui/themes';
 
-import { CodeSnippets } from "../code-snippets";
-import styles from "./styles.module.css";
+import { CodeSnippets } from '../code-snippets';
+import styles from './styles.module.css';
 
 const FileTabs = ({ snippets, selectedStepId }) => {
   const [selectedSnippetIndex, setSelectedSnippetIndex] = useState(0);
@@ -17,21 +17,13 @@ const FileTabs = ({ snippets, selectedStepId }) => {
   }, [selectedStepId, snippets]);
 
   return (
-    <Tabs.Root
-      className={styles.Root}
-      value={selectedSnippetIndex}
-      onValueChange={handleTabChange}
-    >
+    <Tabs.Root className={styles.Root} value={selectedSnippetIndex} onValueChange={handleTabChange}>
       <Tabs.List className={styles.List}>
         {snippets.map((snippet, index) =>
           snippet.file_name ? (
-            <Tabs.Trigger
-              className={styles.Trigger}
-              key={snippet.id}
-              value={index}
-            >
-              <Text style={{ color: "white", cursor: "pointer" }}>
-                {snippet.file_name + "." + snippet.language_extension}
+            <Tabs.Trigger className={styles.Trigger} key={snippet.id} value={index}>
+              <Text style={{ color: 'white', cursor: 'pointer' }}>
+                {snippet.file_name + '.' + snippet.language_extension}
               </Text>
             </Tabs.Trigger>
           ) : null
@@ -39,10 +31,7 @@ const FileTabs = ({ snippets, selectedStepId }) => {
       </Tabs.List>
       {snippets.map((snippet, index) => (
         <Tabs.Content className={styles.Content} key={snippet.id} value={index}>
-          <CodeSnippets
-            code={snippet.code}
-            language={snippet.language_extension}
-          />
+          <CodeSnippets code={snippet.code} language={snippet.language_extension} />
         </Tabs.Content>
       ))}
     </Tabs.Root>

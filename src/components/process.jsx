@@ -1,22 +1,15 @@
-import * as React from "react";
-import { Box, Flex, Text } from "@radix-ui/themes";
+import * as React from 'react';
+import { Box, Flex, Text } from '@radix-ui/themes';
 
-import CollapsibleSteps from "./collapsible";
-import { WidgetAppBar } from "./app-bar";
-import FileTabs from "./file-tabs";
-import { SnippetLoadingSkeleton } from "./snippet-skeleton";
+import CollapsibleSteps from './collapsible';
+import { WidgetAppBar } from './app-bar';
+import FileTabs from './file-tabs';
+import { SnippetLoadingSkeleton } from './snippet-skeleton';
 
-import "./styles.css";
+import './styles.css';
 
 export const ProcessWidget = React.memo(
-  ({
-    process,
-    codeSnippets,
-    onStepChange,
-    codeSnippetsLoading,
-    codeSnippetsError,
-    selectedStepId,
-  }) => {
+  ({ process, codeSnippets, onStepChange, codeSnippetsLoading, codeSnippetsError, selectedStepId }) => {
     const handleStepChange = React.useCallback(
       (newStepId) => {
         onStepChange(newStepId);
@@ -28,25 +21,16 @@ export const ProcessWidget = React.memo(
       <div className="WidgetWrapper">
         <WidgetAppBar />
         <Flex direction="row" gap="2" align="stretch" p="2">
-          <CollapsibleSteps
-            steps={process.steps}
-            onStepChange={handleStepChange}
-            selectedStepId={selectedStepId}
-          />
+          <CollapsibleSteps steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
           {codeSnippetsLoading ? (
             <SnippetLoadingSkeleton />
           ) : codeSnippetsError ? (
             <Box>
-              <Text>
-                Error loading code snippets: {codeSnippetsError.message}
-              </Text>
+              <Text>Error loading code snippets: {codeSnippetsError.message}</Text>
             </Box>
           ) : codeSnippets ? (
             <Box className="FileTabsWrapper" p={2}>
-              <FileTabs
-                snippets={codeSnippets}
-                selectedSnippetIndex={selectedStepId}
-              />
+              <FileTabs snippets={codeSnippets} selectedSnippetIndex={selectedStepId} />
             </Box>
           ) : (
             <SnippetLoadingSkeleton />
@@ -57,4 +41,4 @@ export const ProcessWidget = React.memo(
   }
 );
 
-ProcessWidget.displayName = "ProcessWidget";
+ProcessWidget.displayName = 'ProcessWidget';

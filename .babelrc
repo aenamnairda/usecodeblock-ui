@@ -1,10 +1,24 @@
 {
   "presets": [
-    "@babel/preset-env",
+    ["@babel/preset-env", {
+      "modules": "auto",
+      "targets": {
+        "browsers": [">0.25%", "not dead"]
+      }
+    }],
     ["@babel/preset-react", {
       "runtime": "automatic",
       "development": false,
-      "importSource": "react"
+      "importSource": "react",
+      "throwIfNamespace": false
     }]
-  ]
+  ],
+  "ignore": ["**/*.test.js", "**/*.spec.js", "node_modules"],
+  "env": {
+    "esm": {
+      "presets": [
+        ["@babel/preset-env", { "modules": false }]
+      ]
+    }
+  }
 }

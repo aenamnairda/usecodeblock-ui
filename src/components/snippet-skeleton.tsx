@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Text, Skeleton, Flex } from "@radix-ui/themes";
+import * as React from 'react';
+import { Text, Skeleton, Flex } from '@radix-ui/themes';
 
 export const SnippetLoadingSkeleton = () => {
   return (
@@ -10,10 +10,7 @@ export const SnippetLoadingSkeleton = () => {
         </Text>
 
         <Skeleton>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt
-          </Text>
+          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</Text>
         </Skeleton>
       </Flex>
     </Flex>
