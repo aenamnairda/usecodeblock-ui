@@ -1,9 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.stepsClient = void 0;
 class StepsClient {
   async create(processId, values) {
     try {
@@ -64,4 +58,4 @@ class StepsClient {
     }
   }
 }
-const stepsClient = exports.stepsClient = new StepsClient();
+export const stepsClient = new StepsClient();

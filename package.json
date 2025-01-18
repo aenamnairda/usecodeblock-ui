@@ -4,19 +4,22 @@
   "description": "ExplainThisCode is a set of client side views for ExplainThisCode.com",
   "private": false,
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
-    "test": "echo \"Error: no tyest specified\" && exit 1",
-    "build": "babel src --out-dir dist",
-    "build:cjs": "babel src --out-dir dist --copy-files",
-    "build:esm": "babel src --out-dir dist/esm --copy-files --no-babelrc --config-file ./.babelrc.esm.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:esm",
+    "build:esm": "babel src --out-dir dist --copy-files",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix"
   },

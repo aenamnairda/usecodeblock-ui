@@ -1,9 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.codeSnippetsClient = void 0;
 class CodeSnippetsClient {
   constructor() {
     this.cache = new Map();
@@ -102,4 +96,4 @@ class CodeSnippetsClient {
     }
   }
 }
-const codeSnippetsClient = exports.codeSnippetsClient = new CodeSnippetsClient();
+export const codeSnippetsClient = new CodeSnippetsClient();

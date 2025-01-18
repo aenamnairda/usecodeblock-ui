@@ -1,20 +1,13 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.useCodeSnippetsData = useCodeSnippetsData;
-exports.useProcessData = void 0;
-var _react = require("react");
-var _apiService = require("../services/api-service");
-var _codeSnippets = require("../lib/code-snippets");
-const useProcessData = processId => {
-  const [state, setState] = (0, _react.useState)({
+import { useEffect, useState } from "react";
+import { getProcess } from "../services/api-service";
+import { codeSnippetsClient } from "../lib/code-snippets";
+export const useProcessData = processId => {
+  const [state, setState] = useState({
     data: null,
     loading: true,
     error: null
   });
-  (0, _react.useEffect)(() => {
+  useEffect(() => {
     let isMounted = true;
     const fetchData = async () => {
       if (!processId) {
@@ -25,7 +18,7 @@ const useProcessData = processId => {
         return;
       }
       try {
-        const response = await (0, _apiService.getProcess)(processId);
+        const response = await getProcess(processId);
         if (isMounted) {
           setState({
             data: response,
@@ -50,14 +43,13 @@ const useProcessData = processId => {
   }, [processId]);
   return state;
 };
-exports.useProcessData = useProcessData;
-function useCodeSnippetsData(processId, stepId) {
-  const [state, setState] = (0, _react.useState)({
+export function useCodeSnippetsData(processId, stepId) {
+  const [state, setState] = useState({
     data: null,
     loading: false,
     error: null
   });
-  (0, _react.useEffect)(() => {
+  useEffect(() => {
     if (!processId || !stepId) {
       return;
     }
@@ -68,7 +60,7 @@ function useCodeSnippetsData(processId, stepId) {
         loading: true
       }));
       try {
-        const result = await _codeSnippets.codeSnippetsClient.get(processId, stepId);
+        const result = await codeSnippetsClient.get(processId, stepId);
         if (!mounted) return;
         setState({
           data: result.data,

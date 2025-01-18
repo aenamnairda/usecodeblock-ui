@@ -1,9 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getProcess = exports.getCodeSnippets = exports.apiClient = exports.ExplainThisCodeClient = void 0;
 const API_BASE_URL = "http://localhost:4000";
 const API_VERSION = "v1";
 class ExplainThisCodeClient {
@@ -59,17 +53,15 @@ class ExplainThisCodeClient {
     return this.request("DELETE", path, data);
   }
 }
-exports.ExplainThisCodeClient = ExplainThisCodeClient;
-const apiClient = exports.apiClient = new ExplainThisCodeClient({
+const apiClient = new ExplainThisCodeClient({
   timeout: 10000
 });
-const getProcess = function (processId) {
+export { apiClient, ExplainThisCodeClient };
+export const getProcess = function (processId) {
   let params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return apiClient.get(`/processes/${processId}`, params);
 };
-exports.getProcess = getProcess;
-const getCodeSnippets = function (processId, stepId) {
+export const getCodeSnippets = function (processId, stepId) {
   let params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   return apiClient.get(`/code_snippets/${processId}/${stepId}`, params);
 };
-exports.getCodeSnippets = getCodeSnippets;

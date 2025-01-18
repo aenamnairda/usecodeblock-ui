@@ -1,9 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.processesClient = void 0;
 class ProcessesClient {
   async getAll() {
     try {
@@ -96,4 +90,4 @@ class ProcessesClient {
     }
   }
 }
-const processesClient = exports.processesClient = new ProcessesClient();
+export const processesClient = new ProcessesClient();

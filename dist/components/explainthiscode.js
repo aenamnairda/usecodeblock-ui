@@ -1,49 +1,42 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.ExplainThisCodeUI = void 0;
-var _react = _interopRequireWildcard(require("react"));
-var _useApiData = require("../hooks/use-api-data");
-var _process = require("./process");
-var _loadingSkeleton = require("./loading-skeleton");
-require("@radix-ui/themes/styles.css");
-require("../styles/global.css");
-var _themes = require("@radix-ui/themes");
-var _jsxRuntime = require("react/jsx-runtime");
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
-const ExplainThisCodeUI = _ref => {
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useProcessData } from '../hooks/use-api-data';
+import { useCodeSnippetsData } from '../hooks/use-api-data';
+import { ProcessWidget } from './process';
+import { WidgetSkeleton } from './loading-skeleton';
+import '@radix-ui/themes/styles.css';
+import '../styles/global.css';
+import { Theme } from '@radix-ui/themes';
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+export const ExplainThisCodeUI = _ref => {
   let {
     processId
   } = _ref;
-  const [stepId, setStepId] = (0, _react.useState)(null);
-  const initialLoadDone = (0, _react.useRef)(false);
+  const [stepId, setStepId] = useState(null);
+  const initialLoadDone = useRef(false);
   const {
     data: processData,
     loading: processLoading,
     error: processError
-  } = (0, _useApiData.useProcessData)(processId);
+  } = useProcessData(processId);
   const {
     data: snippetsData,
     loading: snippetsLoading,
     error: snippetsError
-  } = (0, _useApiData.useCodeSnippetsData)(processId, stepId);
+  } = useCodeSnippetsData(processId, stepId);
   const process = processData?.process;
-  (0, _react.useEffect)(() => {
+  useEffect(() => {
     if (!initialLoadDone.current && process?.steps?.[0]?.id && !stepId) {
       initialLoadDone.current = true;
       setStepId(process.steps[0].id);
     }
   }, [process, stepId]);
-  const handleStepChange = (0, _react.useCallback)(newStepId => {
+  const handleStepChange = useCallback(newStepId => {
     setStepId(newStepId);
   }, []);
   const {
     snippets: currentSnippets,
     isLoading
-  } = (0, _react.useMemo)(() => {
+  } = useMemo(() => {
     if (!stepId) return {
       snippets: null,
       isLoading: false
@@ -54,18 +47,18 @@ const ExplainThisCodeUI = _ref => {
     };
   }, [stepId, snippetsData, snippetsLoading]);
   if (!process) {
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)(_loadingSkeleton.WidgetSkeleton, {});
+    return /*#__PURE__*/_jsx(WidgetSkeleton, {});
   }
   if (processError) {
-    return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+    return /*#__PURE__*/_jsxs("div", {
       children: ["Error: ", processError?.message]
     });
   }
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_themes.Theme, {
+  return /*#__PURE__*/_jsx(Theme, {
     accentColor: "gray",
     grayColor: "sand",
     radius: "large",
-    children: processLoading ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_loadingSkeleton.WidgetSkeleton, {}) : /*#__PURE__*/(0, _jsxRuntime.jsx)(_process.ProcessWidget, {
+    children: processLoading ? /*#__PURE__*/_jsx(WidgetSkeleton, {}) : /*#__PURE__*/_jsx(ProcessWidget, {
       process: process,
       codeSnippets: currentSnippets,
       onStepChange: handleStepChange,
@@ -75,5 +68,4 @@ const ExplainThisCodeUI = _ref => {
     })
   });
 };
-exports.ExplainThisCodeUI = ExplainThisCodeUI;
-var _default = exports.default = ExplainThisCodeUI;
+export default ExplainThisCodeUI;
