@@ -4,7 +4,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ExplainThisCodeUI = void 0;
+exports["default"] = exports.ExplainThisCodeUI = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _useApiData = require("../hooks/use-api-data");
 var _process = require("./process");
@@ -81,3 +81,4 @@ var ExplainThisCodeUI = exports.ExplainThisCodeUI = function ExplainThisCodeUI(_
     })
   });
 };
+var _default = exports["default"] = ExplainThisCodeUI;

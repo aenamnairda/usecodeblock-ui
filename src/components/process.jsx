@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Box, Flex, Text } from "@radix-ui/themes";
 
 import CollapsibleSteps from "./collapsible";

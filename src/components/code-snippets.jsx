@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Highlight, themes } from "prism-react-renderer";
 
 export function CodeSnippets({ code, language }) {
