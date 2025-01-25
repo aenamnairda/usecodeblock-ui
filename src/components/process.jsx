@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Flex, Text } from '@radix-ui/themes';
 
-import CollapsibleSteps from './collapsible';
+import LeftNav from './left-nav';
 import { WidgetAppBar } from './app-bar';
 import FileTabs from './file-tabs';
 import { SnippetLoadingSkeleton } from './snippet-skeleton';
@@ -9,7 +9,7 @@ import { SnippetLoadingSkeleton } from './snippet-skeleton';
 import './styles.css';
 
 export const ProcessWidget = React.memo(
-  ({ process, codeSnippets, onStepChange, codeSnippetsLoading, codeSnippetsError, selectedStepId }) => {
+  ({ process, codeSnippets, onStepChange, codeSnippetsLoading, codeSnippetsError, selectedStepId, ...props }) => {
     const handleStepChange = React.useCallback(
       (newStepId) => {
         onStepChange(newStepId);
@@ -18,10 +18,10 @@ export const ProcessWidget = React.memo(
     );
 
     return (
-      <div className="WidgetWrapper">
+      <div className="WidgetWrapper" {...props}>
         <WidgetAppBar />
         <Flex direction="row" gap="2" align="stretch" p="2">
-          <CollapsibleSteps steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
+          <LeftNav steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
           {codeSnippetsLoading ? (
             <SnippetLoadingSkeleton />
           ) : codeSnippetsError ? (

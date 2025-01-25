@@ -4,7 +4,7 @@ import * as Collapsible from '@radix-ui/react-collapsible';
 
 import styles from './styles.module.css';
 
-const CollapsibleSteps = ({ steps, onStepChange, selectedStepId }) => {
+const LeftNav = ({ steps, onStepChange, selectedStepId }) => {
   return (
     <Flex direction="column" gap="2">
       {steps.map((step) => (
@@ -30,4 +30,4 @@ const CollapsibleSteps = ({ steps, onStepChange, selectedStepId }) => {
   );
 };
 
-export default CollapsibleSteps;
+export default LeftNav;

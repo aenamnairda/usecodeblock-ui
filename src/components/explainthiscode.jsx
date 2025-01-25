@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useProcessData } from '../hooks/use-api-data';
 import { useCodeSnippetsData } from '../hooks/use-api-data';
 import { ProcessWidget } from './process';
-import { WidgetSkeleton } from './loading-skeleton';
+import { LoadingSkeleton } from './loading-skeleton';
 import '@radix-ui/themes/styles.css';
 
 import '../styles/global.css';
 
 import { Theme } from '@radix-ui/themes';
 
-export const ExplainThisCodeUI = ({ processId }) => {
+export const ExplainThisCodeUI = ({ processId, ...props }) => {
   const [stepId, setStepId] = useState(null);
   const initialLoadDone = useRef(false);
 
@@ -39,7 +39,7 @@ export const ExplainThisCodeUI = ({ processId }) => {
   }, [stepId, snippetsData, snippetsLoading]);
 
   if (!process) {
-    return <WidgetSkeleton />;
+    return <LoadingSkeleton />;
   }
 
   if (processError) {
@@ -49,7 +49,7 @@ export const ExplainThisCodeUI = ({ processId }) => {
   return (
     <Theme accentColor="gray" grayColor="sand" radius="large">
       {processLoading ? (
-        <WidgetSkeleton />
+        <LoadingSkeleton />
       ) : (
         <ProcessWidget
           process={process}
@@ -58,6 +58,7 @@ export const ExplainThisCodeUI = ({ processId }) => {
           codeSnippetsLoading={isLoading}
           codeSnippetsError={snippetsError}
           selectedStepId={stepId}
+          {...props}
         />
       )}
     </Theme>

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Highlight, themes } from 'prism-react-renderer';
+import { Highlight } from 'prism-react-renderer';
+import './style.css';
 
-export function CodeSnippets({ code, language }) {
+export function CodeHighlighter({ code, language }) {
   return (
-    <Highlight code={code} language={language} theme={themes.dracula}>
+    <Highlight code={code} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={className}
@@ -19,7 +20,13 @@ export function CodeSnippets({ code, language }) {
           }}
         >
           {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line })} style={{ display: 'flex' }}>
+            <div
+              key={i}
+              {...getLineProps({ line })}
+              style={{
+                display: 'flex',
+              }}
+            >
               <span
                 style={{
                   userSelect: 'none',
@@ -27,13 +34,26 @@ export function CodeSnippets({ code, language }) {
                   color: '#666',
                   textAlign: 'right',
                   marginRight: '1em',
+                  opacity: 0,
+                  animation: `typewriter 0.1s ease-out forwards`,
+                  animationDelay: `${i * 0.1}s`,
                 }}
               >
                 {i + 1}
               </span>
               <span>
                 {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token })} />
+                  <span
+                    key={key}
+                    {...getTokenProps({ token })}
+                    style={{
+                      ...getTokenProps({ token }).style,
+                      opacity: 0,
+                      animation: `typewriter 0.1s ease-out forwards`,
+                      animationDelay: `${i * 0.1 + key * 0.03}s`,
+                      animationFillMode: 'forwards',
+                    }}
+                  />
                 ))}
               </span>
             </div>

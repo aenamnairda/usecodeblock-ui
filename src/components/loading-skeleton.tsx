@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Skeleton, Flex } from '@radix-ui/themes';
 
-import { WidgetAppBar } from '../app-bar';
+import { WidgetAppBar } from './app-bar';
 
-export const WidgetSkeleton = () => {
+export const LoadingSkeleton = () => {
   return (
     <Box className="WidgetWrapper">
       <WidgetAppBar />

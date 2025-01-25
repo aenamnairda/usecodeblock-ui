@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Tabs, Text } from '@radix-ui/themes';
 
-import { CodeSnippets } from '../code-snippets';
+import { CodeHighlighter } from '../code-highlighter';
 import styles from './styles.module.css';
 
 const FileTabs = ({ snippets, selectedStepId }) => {
@@ -31,7 +31,7 @@ const FileTabs = ({ snippets, selectedStepId }) => {
       </Tabs.List>
       {snippets.map((snippet, index) => (
         <Tabs.Content className={styles.Content} key={snippet.id} value={index}>
-          <CodeSnippets code={snippet.code} language={snippet.language_extension} />
+          <CodeHighlighter code={snippet.code} language={snippet.language_extension} />
         </Tabs.Content>
       ))}
     </Tabs.Root>
