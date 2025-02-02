@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Highlight } from 'prism-react-renderer';
+import { Highlight, themes } from 'prism-react-renderer';
 import './style.css';
 
 function useTypewriterEffect(tokens) {
@@ -130,7 +130,7 @@ function CodeHighlighterInner({ tokens, className, style, getLineProps, getToken
 
 export function CodeHighlighter({ code, language }) {
   return (
-    <Highlight code={code} language={language}>
+    <Highlight code={code} language={language} theme={themes.vsDark}>
       {(props) => <CodeHighlighterInner {...props} />}
     </Highlight>
   );

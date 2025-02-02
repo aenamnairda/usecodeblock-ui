@@ -13,6 +13,10 @@ const LeftNav = ({ steps, onStepChange, selectedStepId }) => {
           className={styles.Root}
           open={selectedStepId === step.id}
           onOpenChange={() => onStepChange(step.id)}
+          style={{
+            flex: selectedStepId === step.id ? '1' : 'none',
+            transition: 'flex 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+          }}
         >
           <div className={styles.StepContent}>
             <Collapsible.Trigger asChild>
