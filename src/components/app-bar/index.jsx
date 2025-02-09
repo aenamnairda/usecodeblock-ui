@@ -1,16 +1,21 @@
 import React from 'react';
-import { Flex } from '@radix-ui/themes';
+import { Flex, Tooltip } from '@radix-ui/themes';
 import './styles.css';
+import { Logo } from '../logo';
 
 export const WidgetAppBar = () => {
   return (
-    <Flex px="4" pb="2" pt="4">
+    <Flex align="center" px="4" height="48px">
       <Flex align="center" flexGrow="1" direction="row" gap="1">
         <div className="StyledCircle" />
         <div className="StyledCircle" />
         <div className="StyledCircle" />
       </Flex>
-      <Flex direction="row" gap="1"></Flex>
+      <Flex direction="row" gap="1">
+        <Tooltip content="Created using xplainthis.codes">
+          <Logo style={{ opacity: '0.4' }} />
+        </Tooltip>
+      </Flex>
     </Flex>
   );
 };
