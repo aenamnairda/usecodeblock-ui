@@ -30,22 +30,33 @@ export const ProcessWidget = React.memo(
     return (
       <div className="WidgetWrapper" style={{ width, height }} {...props}>
         <WidgetAppBar />
-        <Flex direction="row" gap="2" align="stretch" pb="2" px="2" style={{ height: 'calc(100% - 48px)' }}>
-          <LeftNav steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
-          {codeSnippetsLoading ? (
-            <SnippetLoadingSkeleton />
-          ) : codeSnippetsError ? (
-            <Box>
-              <Text>Error loading code snippets: {codeSnippetsError.message}</Text>
-            </Box>
-          ) : codeSnippets ? (
-            <Box className="FileTabsWrapper" p={2}>
-              <FileTabs snippets={codeSnippets} selectedSnippetIndex={selectedStepId} />
-            </Box>
-          ) : (
-            <SnippetLoadingSkeleton />
-          )}
-        </Flex>
+        <Box style={{ height: 'calc(100% - 48px)', width: '100%', padding: '8px' }}>
+          <Flex
+            direction="row"
+            gap="2"
+            wrap="wrap"
+            style={{
+              minHeight: 0,
+              height: '100%',
+              width: '100%',
+            }}
+          >
+            <LeftNav steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
+            {codeSnippetsLoading ? (
+              <SnippetLoadingSkeleton />
+            ) : codeSnippetsError ? (
+              <Box>
+                <Text>Error loading code snippets: {codeSnippetsError.message}</Text>
+              </Box>
+            ) : codeSnippets ? (
+              <Box className="FileTabsWrapper" p={2}>
+                <FileTabs snippets={codeSnippets} selectedSnippetIndex={selectedStepId} />
+              </Box>
+            ) : (
+              <SnippetLoadingSkeleton />
+            )}
+          </Flex>
+        </Box>
       </div>
     );
   }
