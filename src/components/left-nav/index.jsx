@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 const LeftNav = ({ steps, onStepChange, selectedStepId }) => {
   return (
-    <Flex direction="column" gap="2">
+    <Flex height="100%" direction="column" gap="2">
       {steps.map((step) => (
         <Collapsible.Root
           key={step.id}

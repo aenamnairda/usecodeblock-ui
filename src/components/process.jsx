@@ -30,17 +30,8 @@ export const ProcessWidget = React.memo(
     return (
       <div className="WidgetWrapper" style={{ width, height }} {...props}>
         <WidgetAppBar />
-        <Box style={{ height: 'calc(100% - 48px)', width: '100%', padding: '8px' }}>
-          <Flex
-            direction="row"
-            gap="2"
-            wrap="wrap"
-            style={{
-              minHeight: 0,
-              height: '100%',
-              width: '100%',
-            }}
-          >
+        <Box px="2" pb="2" style={{ height: 'calc(100% - 48px)', width: '100%' }}>
+          <Flex height="100%" direction="row" gap="2" wrap="wrap">
             <LeftNav steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
             {codeSnippetsLoading ? (
               <SnippetLoadingSkeleton />
