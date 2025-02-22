@@ -1,10 +1,10 @@
-const API_BASE_URL = "http://localhost:4000";
-const API_VERSION = "v1";
+const API_BASE_URL = 'http://localhost:4000';
+const API_VERSION = 'v1';
 
-class ExplainThisCodeClient {
+class UseCodeBlockClient {
   constructor(config) {
-    if (!(this instanceof ExplainThisCodeClient)) {
-      return new ExplainThisCodeClient(config);
+    if (!(this instanceof UseCodeBlockClient)) {
+      return new UseCodeBlockClient(config);
     }
     this.baseUrl = API_BASE_URL;
     this.apiVersion = API_VERSION;
@@ -14,21 +14,19 @@ class ExplainThisCodeClient {
   async request(method, path, data = null, headers = {}) {
     const url = new URL(`${this.apiVersion}${path}`, this.baseUrl);
 
-    if (method === "GET" && data) {
-      Object.keys(data).forEach((key) =>
-        url.searchParams.append(key, data[key])
-      );
+    if (method === 'GET' && data) {
+      Object.keys(data).forEach((key) => url.searchParams.append(key, data[key]));
     }
 
     const options = {
       method: method,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         ...headers,
       },
     };
 
-    if (data && method !== "GET") {
+    if (data && method !== 'GET') {
       options.body = JSON.stringify(data);
     }
 
@@ -39,35 +37,34 @@ class ExplainThisCodeClient {
       }
       return await response.json();
     } catch (error) {
-      throw new Error(error.message || "An error occurred during the request");
+      throw new Error(error.message || 'An error occurred during the request');
     }
   }
 
   async get(path, params = {}) {
-    return this.request("GET", path, params);
+    return this.request('GET', path, params);
   }
 
   async post(path, data = {}) {
-    return this.request("POST", path, data);
+    return this.request('POST', path, data);
   }
 
   async put(path, data = {}) {
-    return this.request("PUT", path, data);
+    return this.request('PUT', path, data);
   }
 
   async delete(path, data = {}) {
-    return this.request("DELETE", path, data);
+    return this.request('DELETE', path, data);
   }
 }
 
-const apiClient = new ExplainThisCodeClient({
+const apiClient = new UseCodeBlockClient({
   timeout: 10000,
 });
 
-export { apiClient, ExplainThisCodeClient };
+export { apiClient, UseCodeBlockClient };
 
-export const getProcess = (processId, params = {}) =>
-  apiClient.get(`/processes/${processId}`, params);
+export const getProcess = (processId, params = {}) => apiClient.get(`/processes/${processId}`, params);
 
 export const getCodeSnippets = (processId, stepId, params = {}) =>
   apiClient.get(`/code_snippets/${processId}/${stepId}`, params);

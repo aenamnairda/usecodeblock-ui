@@ -1,5 +1,5 @@
-import { ExplainThisCodeClient } from "./services/api-service";
-import { ExplainThisCodeUI } from "./components";
+import { UseCodeBlockClient } from './services/api-service';
+import { UseCodeBlockUI } from './components';
 
-export { ExplainThisCodeClient, ExplainThisCodeUI };
-export default { ExplainThisCodeClient, ExplainThisCodeUI };
+export { UseCodeBlockClient, UseCodeBlockUI };
+export default { UseCodeBlockClient, UseCodeBlockUI };

@@ -9,7 +9,7 @@ import '../styles/global.css';
 
 import { Theme } from '@radix-ui/themes';
 
-export const ExplainThisCodeUI = ({ processId, width = '100%', height = '100%', radius = 'small', ...props }) => {
+export const UseCodeBlockUI = ({ processId, width = '100%', height = '100%', radius = 'small', ...props }) => {
   const [stepId, setStepId] = useState(null);
   const initialLoadDone = useRef(false);
 
@@ -67,4 +67,4 @@ export const ExplainThisCodeUI = ({ processId, width = '100%', height = '100%', 
   );
 };
 
-export default ExplainThisCodeUI;
+export default UseCodeBlockUI;
