@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Skeleton, Flex } from '@radix-ui/themes';
+import { Box, Skeleton, Flex, Text } from '@radix-ui/themes';
 
 import { WidgetAppBar } from './app-bar';
 
@@ -8,13 +8,15 @@ export const LoadingSkeleton = () => {
     <Box className="WidgetWrapper">
       <WidgetAppBar />
       <Flex direction="row" gap="2" align="stretch" p="2">
-        <Skeleton width="300px" height="400px" />
+        <Skeleton width="300px" height="300px" style={{borderRadius: 'var(--radius-6)'}} />
         <Flex direction="column" gap="2">
-          <Skeleton width="100px" height="1em" />
-          <Skeleton width="100px" height="1em" />
-          <Skeleton width="250px" height="1em" />
-          <Skeleton width="250px" height="1em" />
-        </Flex>
+        <Text>
+          <Skeleton>Lorem ipsum dolor sit amet.</Skeleton>
+        </Text>
+        <Skeleton>
+          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</Text>
+        </Skeleton>
+      </Flex>
       </Flex>
     </Box>
   );

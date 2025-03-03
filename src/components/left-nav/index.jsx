@@ -6,7 +6,14 @@ import styles from './styles.module.css';
 
 const LeftNav = ({ steps, onStepChange, selectedStepId }) => {
   return (
-    <Flex height="100%" direction="column" gap="2">
+    <Flex
+      direction="column"
+      height="100%"
+      gap="2"
+      style={{
+        overflowY: 'auto',
+      }}
+    >
       {steps.map((step) => (
         <Collapsible.Root
           key={step.id}
@@ -16,9 +23,13 @@ const LeftNav = ({ steps, onStepChange, selectedStepId }) => {
           style={{
             flex: selectedStepId === step.id ? '1' : 'none',
             transition: 'flex 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+            minHeight: 'fit-content',
+            maxHeight: selectedStepId === step.id ? '100%' : 'auto',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
-          <div className={styles.StepContent}>
+          <div className={styles.StepContent} style={{ overflowY: 'auto' }}>
             <Collapsible.Trigger asChild>
               <div className={styles.Title}>{step.title}</div>
             </Collapsible.Trigger>

@@ -12,7 +12,7 @@ export const WidgetAppBar = () => {
         <div className="StyledCircle" />
       </Flex>
       <Flex direction="row" gap="1">
-        <Tooltip content="Created using xplainthis.codes">
+        <Tooltip content="Created using usecodeblock.com">
           <Logo style={{ opacity: '0.4' }} />
         </Tooltip>
       </Flex>

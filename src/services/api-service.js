@@ -1,5 +1,4 @@
-const API_BASE_URL = 'http://localhost:4000';
-const API_VERSION = 'v1';
+import { API_BASE_URL, API_VERSION } from '../config';
 
 class UseCodeBlockClient {
   constructor(config) {

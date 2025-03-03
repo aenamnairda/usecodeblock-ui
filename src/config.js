@@ -1,2 +1,2 @@
-export const API_BASE_URL = "http://localhost:4000";
-export const API_VERSION = "v1";
+export const API_BASE_URL = 'https://usecodeblock-backend-production.up.railway.app';
+export const API_VERSION = 'v1';

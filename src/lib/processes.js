@@ -1,10 +1,12 @@
+import { API_BASE_URL, API_VERSION } from '../config';
+
 class ProcessesClient {
   async getAll() {
     try {
-      const response = await fetch(`http://localhost:4000/v1/processes`, {
-        method: "GET",
+      const response = await fetch(`${API_BASE_URL}/${API_VERSION}/processes`, {
+        method: 'GET',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+          Authorization: `Bearer ${localStorage.getItem('auth-token')}`,
         },
       });
       if (!response.ok) {
@@ -20,10 +22,10 @@ class ProcessesClient {
 
   async create(values) {
     try {
-      const response = await fetch(`http://localhost:4000/v1/processes`, {
-        method: "POST",
+      const response = await fetch(`${API_BASE_URL}/${API_VERSION}/processes`, {
+        method: 'POST',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+          Authorization: `Bearer ${localStorage.getItem('auth-token')}`,
         },
         body: JSON.stringify({
           title: values.title,
@@ -42,10 +44,10 @@ class ProcessesClient {
 
   async getById(id) {
     try {
-      const response = await fetch(`http://localhost:4000/v1/processes/${id}`, {
-        method: "GET",
+      const response = await fetch(`${API_BASE_URL}/${API_VERSION}/processes/${id}`, {
+        method: 'GET',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+          Authorization: `Bearer ${localStorage.getItem('auth-token')}`,
         },
       });
       if (!response.ok) {
@@ -61,10 +63,10 @@ class ProcessesClient {
 
   async delete(id) {
     try {
-      const response = await fetch(`http://localhost:4000/v1/processes/${id}`, {
-        method: "DELETE",
+      const response = await fetch(`${API_BASE_URL}/${API_VERSION}/processes/${id}`, {
+        method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+          Authorization: `Bearer ${localStorage.getItem('auth-token')}`,
         },
       });
 

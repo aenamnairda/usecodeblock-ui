@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Flex, Text } from '@radix-ui/themes';
+import { Flex, Text } from '@radix-ui/themes';
 
 import LeftNav from './left-nav';
 import { WidgetAppBar } from './app-bar';
@@ -30,24 +30,30 @@ export const ProcessWidget = React.memo(
     return (
       <div className="WidgetWrapper" style={{ width, height }} {...props}>
         <WidgetAppBar />
-        <Box px="2" pb="2" style={{ height: 'calc(100% - 48px)', width: '100%' }}>
-          <Flex height="100%" direction="row" gap="2" wrap="wrap">
-            <LeftNav steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
-            {codeSnippetsLoading ? (
-              <SnippetLoadingSkeleton />
-            ) : codeSnippetsError ? (
-              <Box>
-                <Text>Error loading code snippets: {codeSnippetsError.message}</Text>
-              </Box>
-            ) : codeSnippets ? (
-              <Box className="FileTabsWrapper" p={2}>
-                <FileTabs snippets={codeSnippets} selectedSnippetIndex={selectedStepId} />
-              </Box>
-            ) : (
-              <SnippetLoadingSkeleton />
-            )}
-          </Flex>
-        </Box>
+        <Flex p="2" style={{ height: 'calc(100% - 48px)', width: '100%' }} gap="2">
+          <LeftNav steps={process.steps} onStepChange={handleStepChange} selectedStepId={selectedStepId} />
+          {codeSnippetsLoading ? (
+            <SnippetLoadingSkeleton />
+          ) : codeSnippetsError ? (
+            <Flex grow="1">
+              <Text>Error loading code snippets: {codeSnippetsError.message}</Text>
+            </Flex>
+          ) : codeSnippets ? (
+            <Flex
+              grow="1"
+              className="FileTabsWrapper"
+              style={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <FileTabs snippets={codeSnippets} selectedSnippetIndex={selectedStepId} />
+            </Flex>
+          ) : (
+            <SnippetLoadingSkeleton />
+          )}
+        </Flex>
       </div>
     );
   }
